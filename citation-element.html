@@ -2,8 +2,9 @@
 <link rel="import" href="../hax-body-behaviors/hax-body-behaviors.html">
 <link rel="import" href="../schema-behaviors/schema-behaviors.html">
 <!--
-`citation-element`
-A LRN element
+ `citation-element`
+ An element dedicated to presenting and managing a correct citation on the web
+ both visually as well as semantically with simple inputs.
 
 @demo demo/index.html
 
@@ -43,8 +44,8 @@ A LRN element
         margin-right: .5em;
       }
     </style>
-    <link typeof="resource" src="[[source]]"/>
-    <cite>[[title]] by [[creator]], licensed under <a class="license-link" target="_blank" href="[[licenseLink]]"><img src="[[licenseImage]] hidden&="[[!licenseImage]]" />[[licenseName]]</a>. Accessed <span class="citation-date">[[date]]</span>.</cite>
+    <link rel="license" typeof="resource" src="[[source]]"/>
+    <cite><a target="_blank" href="[[source]]">[[title]]</a> by [[creator]], licensed under <a class="license-link" target="_blank" href="[[licenseLink]]"><img alt="[[licenseName]] graphic" src="[[licenseImage]]" hidden&="[[!licenseImage]]" />[[licenseName]]</a>. Accessed <span class="citation-date">[[date]]</span>.</cite>
   </template>
 
   <script>
@@ -164,7 +165,7 @@ A LRN element
                 'title': 'License',
                 'description': 'The source url for the element this is citing.',
                 'inputMethod': 'select',
-                'options': this.licenseList(),
+                'options': this.licenseList('select'),
                 'icon': 'link',
               },
               {
@@ -202,7 +203,7 @@ A LRN element
                 'title': 'License',
                 'description': 'The source url for the element this is citing.',
                 'inputMethod': 'select',
-                'options': this.licenseList(),
+                'options': this.licenseList('select'),
                 'icon': 'link',
               },
               {
@@ -229,44 +230,48 @@ A LRN element
       /**
        * A list of licenses that we support the references for.
        */
-      licenseList: function() {
+      licenseList: function(mode = 'full') {
+        // initial list, PR to add more
         let list = {
           'by': {
             'name': 'Attribution',
-            'link': 'https://creativecommons.org/',
-            'image': '',
+            'link': 'https://creativecommons.org/licenses/by/4.0/',
+            'image': 'https://i.creativecommons.org/l/by/4.0/88x31.png',
           },
           'by-sa': {
             'name': 'Attribution Share a like',
-            'link': 'https://creativecommons.org/',
-            'image': '',
+            'link': 'https://creativecommons.org/licenses/by-sa/4.0/',
+            'image': 'https://i.creativecommons.org/l/by-sa/4.0/88x31.png',
           },
           'by-nd': {
             'name': 'Attribution No derivatives',
-            'link': 'https://creativecommons.org/',
-            'image': '',
+            'link': 'https://creativecommons.org/licenses/by-nd/4.0/',
+            'image': 'https://i.creativecommons.org/l/by-nd/4.0/88x31.png',
           },
           'by-nc': {
             'name': 'Attribution non-commercial',
-            'link': 'https://creativecommons.org/',
-            'image': '',
+            'link': 'https://creativecommons.org/licenses/by-nc/4.0/',
+            'image': 'https://i.creativecommons.org/l/by-nc/4.0/88x31.png',
           },
           'by-nc-sa': {
             'name': 'Attribution non-commercial share a like',
-            'link': 'https://creativecommons.org/',
-            'image': '',
+            'link': 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
+            'image': 'https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png',
           },
           'by-nc-nd': {
             'name': 'Attribution Non-commercial No derivatives',
-            'link': 'https://creativecommons.org/',
-            'image': '',
-          },
-          'cc0': {
-            'name': 'Public domain',
-            'link': 'https://creativecommons.org/',
-            'image': '',
+            'link': 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
+            'image': 'https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png',
           },
         };
+        // support mutating the array into a select list
+        if (mode == 'select') {
+          var select = {};
+          for (var i in list) {
+            select[i] = list[i].name;
+          }
+          return select;
+        }
         return list;
       },
       /**
