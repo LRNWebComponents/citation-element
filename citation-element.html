@@ -131,7 +131,11 @@
                 'author': 'creator',
                 'license': 'license',
                 'accessDate': 'date'
-              }
+              },
+              {
+                'type': 'inline',
+                'text': 'title'
+              },
             ],
             'meta': {
               'author': 'LRNWebComponents'
@@ -148,10 +152,11 @@
               },
               {
                 'property': 'source',
-                'title': 'Source',
+                'title': 'Source link',
                 'description': 'The source url for the element this is citing.',
                 'inputMethod': 'textfield',
                 'icon': 'link',
+                'validationType': 'url',
               },
               {
                 'property': 'date',
@@ -186,10 +191,11 @@
               },
               {
                 'property': 'source',
-                'title': 'Source',
+                'title': 'Source link',
                 'description': 'The source url for the element this is citing.',
                 'inputMethod': 'textfield',
                 'icon': 'link',
+                'validationType': 'url',
               },
               {
                 'property': 'date',
@@ -209,13 +215,6 @@
               {
                 'property': 'creator',
                 'title': 'Creator',
-                'description': 'Who made or owns this.',
-                'inputMethod': 'textfield',
-                'icon': 'link',
-              },
-              {
-                'property': 'displayMethod',
-                'title': 'Display method',
                 'description': 'Who made or owns this.',
                 'inputMethod': 'textfield',
                 'icon': 'link',
