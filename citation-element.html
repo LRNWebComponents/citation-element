@@ -136,6 +136,8 @@
             this.relatedResource = uuid;
             Polymer.dom(this).previousElementSibling.setAttribute('resource', uuid);
           }
+          // set prefix on the main element itself
+          Polymer.dom(this).previousElementSibling.setAttribute("prefix", this.getAttribute('prefix'));
         }
         else if (newValue === 'parent') {
           // @todo find the parent and associate to it's resource ID, if it doesn't have one
@@ -148,6 +150,8 @@
             this.relatedResource = uuid;
             Polymer.dom(this).parentNode.setAttribute('resource', uuid);
           }
+          // set prefix on the main element itself
+          Polymer.dom(this).parentNode.setAttribute("prefix", this.getAttribute('prefix'));
         }
       },
       /**
@@ -216,6 +220,17 @@
                 'icon': 'link',
               },
               {
+                'property': 'scope',
+                'title': 'Scope',
+                'description': 'Scope of what to cite.',
+                'inputMethod': 'select',
+                'options': {
+                  'sibling': 'Sibling element',
+                  'parent': 'Parent element',
+                },
+                'icon': 'code',
+              },
+              {
                 'property': 'creator',
                 'title': 'Creator',
                 'description': 'Who made or owns this.',
@@ -245,6 +260,17 @@
                 'description': 'The date this was accessed.',
                 'inputMethod': 'textfield',
                 'icon': 'link',
+              },
+              {
+                'property': 'scope',
+                'title': 'Scope',
+                'description': 'Scope of what to cite.',
+                'inputMethod': 'select',
+                'options': {
+                  'sibling': 'Sibling element',
+                  'parent': 'Parent element',
+                },
+                'icon': 'code',
               },
               {
                 'property': 'license',
