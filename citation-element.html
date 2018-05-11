@@ -125,7 +125,8 @@
        * Notice scope change.
        */
       _scopeChanged: function(newValue, oldValue) {
-        if (newValue === 'sibling') {
+        // make sure we actually have a sibling first
+        if (newValue === 'sibling' && Polymer.dom(this).previousElementSibling !== null) {
           // find the sibling element in the DOM and associate to it's resource ID
           // also generate a resource ID if it doesn't have one
           if (Polymer.dom(this).previousElementSibling.getAttribute('resource')) {
